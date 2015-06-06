@@ -23,3 +23,5 @@ git remote add origin https://github.com/mgl2809/github.git
 git push -u origin master .- para enviar los cambios de local a Github web
 git clone y la ruta https://github.com/itebmiranda/test.git.- para clonar el proyecto completo
 git pull origin master
+
+comandos
