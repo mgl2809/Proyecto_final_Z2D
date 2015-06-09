@@ -1,97 +1,22 @@
-
+/**
+ * Autor: Jose Maria Salas Torres
+ * 
+ *
+ */
 $(document).ready(function(){ //cuando el html fue cargado iniciar
 
-    //Funciones para el manejo de encargados
-    //Registrar encargado
-       $('#AgregarE').live('click', function(){
+    //Funciones para el manejo de Alumnos
+    //Registrar alumno
+       $('#AgregarA').live('click', function(){
              
         params = {};
                 
-        params.action= "AgregarEncargado";
-        $('#popupbox').load('listar_encargados.php', params,function(){
+        params.action= "AgregarAlumno";
+        $('#popupbox').load('listar_alumnos.php', params,function(){
             $('#block').show();
             $('#popupbox').show();
         })
     })
-	   
-	//Guarda encargado desde el formulario
-     $('#saveE').live('click',function(){
-      //  alert("sientra");
-        var nombre = document.frm_dependencia.nombre.value;
-		var ubicacion = document.frm_dependencia.ub.value;
-	    var responsable = document.frm_dependencia.responsable.value;
-        
-             
-        params={};
-        params.nombre = nombre;
-		params.ubicacion = ubicacion;
-		 params.responsable = responsable; 
-               
-        var entrar = confirm("¿Se guardara el encargado:  "+nombre+" "+ ubicacion +" " +responsable+"?");	
-		
-        if (entrar == true){            
-            params.action="Save_Dependencia";
-            $('#content').load('listar_dependencia.php', params,function(){
-                		
-            })        
-       } 
-    })
-   
-    //Buscar encargado por nombre
-    $('#buscarE').live('click',function(){
-        var nombre= document.frm_listaencargado.nombre_enc.value;	
-        alert(nombre);
-        
-        params={};
-        params.nombre=nombre;
-		
-        params.action="Buscar_d";
-        $('#content').load('listar_dependencia.php', params,function(){
-            
-			
-            })
-		
-		
-	
-    })
-   
-    //funcion modificar encargado
-    $('#select_me').live('click', function(){
-        var id = $(this).attr('data-ide');
-        //var nombre = $(this).sttr('data-nombre');
-        alert("aqui");
-        //alert(nombre);
-       // var nombre = $(this).attr('data-nombre');
-        var entrar = confirm("¿Modificar Encargado: "+id+" "+nombre+"?");
-        
-        if(entrar == true){
-            params = {};
-            params.id = id;
-            
-            params.action = "ModificarEncargado";
-            $('#popupbox').load('listar_encargados.php', params, function(){
-                $('#block').show();
-                $('#popupbox').show();    
-            })
-        }
-    })
-    //función para eliminar un encargado
-    $('.select_ee').live('click',function(){
-        //obtengo el id que guardamos en data-id
-        var ide=$(this).attr('data-ide'); 
-        var nombre = $(this).attr('data-nombre');      
-		
-        var entrar = confirm("¿Eliminar Encargado: "+ide+" "+nombre+"?");		
-		
-        if (entrar == true){			  
-            params={};
-            params.id=id;		
-            params.action="EliminarEncargado";
-            $('#content').load('listar_encargados.php', params,function(){		
-                })
-        }
-    })
-    
     //Consultar la nformacion de manera rapida
        $('.select_ca').live('click', function(){
              var nc = $(this).attr('data-id');
@@ -105,7 +30,171 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         })
     })
     
-    
+    //Guarda el alumno desde el formulario
+     $('#saveA').live('click',function(){
+        
+        var apellidos = document.frm_alumno.apellidos.value.toUpperCase();
+        var nombre = document.frm_alumno.nombre.value.toUpperCase();
+        var curp = document.frm_alumno.curp.value.toUpperCase(); 
+        var sexo = document.frm_alumno.sexo.value.toUpperCase();
+        var civil = document.frm_alumno.civil.value;
+        var nocontrol = document.frm_alumno.nocontrol.value.toUpperCase();
+        var idusuario = document.frm_alumno.idusuario.value;
+        var especialidad = document.frm_alumno.especialidad.value;
+        var dia = document.frm_alumno.dia.value;
+        var mes = document.frm_alumno.mes.value;
+        var anio = document.frm_alumno.anio.value;
+        var calle = document.frm_alumno.calle.value.toUpperCase();
+        var colonia = document.frm_alumno.colonia.value.toUpperCase();
+        var localidad = document.frm_alumno.localidad.value.toUpperCase();
+        var municipio = document.frm_alumno.municipio.value.toUpperCase();
+        var estado = document.frm_alumno.estados.value.toUpperCase();
+        var telefono = document.frm_alumno.telefono.value;
+        var correo = document.frm_alumno.correo.value;
+        var nssocial = document.frm_alumno.nssocial.value;
+        var tutor = document.frm_alumno.tutor.value.toUpperCase();
+        
+        if(apellidos == "" || apellidos.length == 0 || apellidos == null || apellidos.match(/^\s+|\s+$/)){
+            alert("Ingrese los apellidos");
+            document.frm_alumno.apellidos.select();
+            document.frm_alumno.apellidos.focus();
+            return false;
+        }else if(apellidos.match(/^[0-9]+$/)){
+            alert("Los apellidos solo pueden contener letras");
+            document.frm_alumno.apellidos.select();
+            document.frm_alumno.apellidos.focus();
+            return false;        
+        }else if(nombre == "" || nombre.length == 0 || nombre == null || nombre.match(/^\s+|\s+$/)){
+            alert("Ingrese el nombre");
+            document.frm_alumno.nombre.select();
+            document.frm_alumno.nombre.focus();
+            return false;
+        }else if(nombre.match(/^[0-9]+$/)){
+            alert("El nombre solo puede contener letras");
+            document.frm_alumno.nombre.select();
+            document.frm_alumno.nombre.focus();
+            return false;        
+        }else if(nocontrol == "" || nocontrol.length == 0 || nocontrol.length > 10 || nocontrol == null || nocontrol.match(/^\s+|\s+$/)){
+            alert("Ingrese el número de control maximo 10 caracteres");
+            document.frm_alumno.nocontrol.select();
+            document.frm_alumno.nocontrol.focus();
+            return false;
+        }else if(idusuario == "" || idusuario == null || idusuario.length == 0 || idusuario.match(/^\s+|\s+$/)) {
+            alert("Ingrese el id de usuario");
+            document.frm_alumno.idusuario.select();
+            document.frm_alumno.idusuario.focus();
+            return false;
+        }else if(isNaN(idusuario)){
+            alert("Debe ingresar un número entero");
+            document.frm_alumno.idusuario.select();
+            document.frm_alumno.idusuario.focus();
+            return false;
+        }else if(curp.match(/^\s+|\s+$/) || curp.length < 18 || curp.length > 18){
+            alert("Ingrese la curp, solo 18 caracteres");
+            document.frm_alumno.curp.select();
+            document.frm_alumno.curp.focus();
+            return false;
+        }else if(sexo == "" || sexo.length == 0 || sexo == null || sexo.match(/^\s+|\s+$/)){
+            alert("Por favor seleccione el sexo");
+            return false;
+        }else if(civil.match(/^\s+|\s+$/)){
+            alert("Selecccione el estado civil");
+            return false;
+        }else if(especialidad == "" || especialidad.length == 0 || especialidad == null || especialidad.match(/^\s+|\s+$/)){
+            alert("Por favor seleccione la especialidad");
+            return false;
+        }else if(dia == "" || dia.length == 0 || dia == null || dia.match(/^\s+|\s+$/)){
+            alert("Por favor seleccione el día");
+            return false;
+        }else if(mes == "" || mes.length == 0 || mes == null || mes.match(/^\s+|\s+$/)){
+            alert("Por favor seleccione el mes");
+            return false;
+        }else if(anio == "" || anio.length == 0 || anio == null || anio.match(/^\s+|\s+$/)){
+            alert("Por favor seleccione el año");
+            return false;
+        }else if(calle.match(/^\s+|\s+$/)){
+            alert("Solo se aceptan letras y numeros");
+            document.frm_alumno.calle.select();
+            document.frm_alumno.calle.focus();
+            return false;
+        }else if(colonia.match(/^\s+|\s+$/)){
+            alert("Solo se aceptan letras y numeros");
+            document.frm_alumno.colonia.select();
+            document.frm_alumno.colonia.focus();
+            return false;
+        }else if(localidad.match(/^\s+|\s+$/)){
+            alert("Solo se aceptan letras y numeros");
+            document.frm_alumno.localidad.select();
+            document.frm_alumno.localidad.focus();
+            return false;
+        }else if(municipio.match(/^\s+|\s+$/)){
+            alert("Solo se aceptan letras y numeros");
+            document.frm_alumno.municipio.select();
+            document.frm_alumno.municipio.focus();
+            return false;
+        }else if(estado.match(/^\s+|\s+$/)){
+            alert("Por favor seleccione el estado");
+            return false; 
+        }else if(telefono.match(/^\s+|\s+$/) || telefono.length > 10 || isNaN(telefono)){
+            alert("Número de telefono invalido solo 10 digitos seguidos");
+            document.frm_alumno.telefono.select();
+            document.frm_alumno.telefono.focus();
+            return false;
+        }else if(correo.match(/^\s+|\s+$/)){
+            alert("Correo no valido");
+            document.frm_alumno.correo.select();
+            document.frm_alumno.correo.focus();
+            return false;
+        }else if(nssocial.match(/^\s+|\s+$/) || isNaN(nssocial)){
+                if(nssocial.length <11){
+            alert("Número de seguro social no valido solo 11 digitos seguidos");
+            document.frm_alumno.nssocial.select();
+            document.frm_alumno.nssocial.focus();
+            return false;}
+        }else if(tutor.match(/^\s+|\s+$/) || tutor.match(/^[0-9]*.$/)){
+            alert("Se aceptan solo letras");
+            document.frm_alumno.tutor.select();
+            document.frm_alumno.tutor.focus();
+            return false;
+        }else{
+            
+        params={};
+        params.nombre = (apellidos+" "+nombre);
+        params.curp = curp; 
+        params.sexo = sexo;
+        params.civil = civil;
+        params.nocontrol = nocontrol;
+        params.idusuario = idusuario;
+        params.especialidad = especialidad;
+        params.dia = dia;
+        params.mes = mes;
+        params.anio = anio;
+        params.calle = calle;
+        params.colonia = colonia;
+        params.localidad = localidad;
+        params.municipio = municipio;
+        params.estado = estado;
+        params.telefono = telefono;
+        params.correo = correo;
+        params.nssocial = nssocial;
+        params.tutor = tutor;
+        
+        
+        var entrar = confirm("¿Se guardara el alumno:  "+nombre+" "+apellidos+"?");
+		
+		
+        if (entrar == true){            
+            params.action="Save_Alumno";
+            $('#content').load('listar_alumnos.php', params,function(){
+                $('#block').hide();
+                $('#popupbox').hide();
+			
+			
+            })
+        }
+       } 
+    })
+   
     
     //modificar alumno   
   $('.select_ma').live('click',function(){
@@ -867,15 +956,16 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
     $('.select_ed').live('click',function(){
         //obtengo el id que guardamos en data-id
         var id=$(this).attr('data-idd'); 
-      
-        var entrar = confirm("¿Eliminar Dependencia: "+id+"?");
-		params={};
-        params.id=id;	
+        var nombre = $(this).attr('data-nombre');      
+		
+        var entrar = confirm("¿Eliminar Docente: "+id+" "+nombre+"?");
+		
 		
         if (entrar == true){			  
-            id.action="Eliminar_Dependencia";
-			alert("paso por aqui"+id);
-			 $('#content').load('listar_dependencia.php', id,function(){		
+            params={};
+            params.id=id;		
+            params.action="EliminarDocente";
+            $('#content').load('listar_docentes.php', params,function(){		
                 })
         }
     })
@@ -901,10 +991,10 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
        //función para modificar un docente
     $('#updateD').live('click', function(){
          
-        var nombre = document.frm_mod_docente.nombre.value;
-        var id = document.frm_mod_docente.id_dependencia.value;
-        var responsable  = document.frm_mod_docente.responsable.value.toUpperCase();
-     /*    
+        var id = document.frm_mod_docente.id.value;
+        var idusuario = document.frm_mod_docente.idusuario.value;
+        var nombre  = document.frm_mod_docente.nombre.value.toUpperCase();
+         
          if(idusuario == "" || idusuario == null || idusuario.length == 0 || idusuario.match(/^\s+|\s+$/)) {
             alert("Ingrese el id de usuario");
             document.frm_mod_docente.idusuario.select();
@@ -925,17 +1015,17 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_mod_docente.nombre.select();
             document.frm_mod_docente.nombre.focus();
             return false;
-        }else*/{
+        }else{
         params  = {};
-        params.responsable = responsable;
         params.id = id;
+        params.idusuario = idusuario;
         params.nombre = nombre;
        
-        var entrar = confirm("Se modificara el dependencia: "+id+".");
+        var entrar = confirm("Se modificara el docente: "+id+".");
         
             if(entrar == true){
                 params.action="ActualizarDocente";
-                $('#content').load('listar_dependencia.php', params, function(){
+                $('#content').load('listar_docentes.php', params, function(){
                     $('#block').show();
                     $('#popupbox').show();
                 })

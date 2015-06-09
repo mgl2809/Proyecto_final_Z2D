@@ -1,17 +1,17 @@
-<?php
+// <?php
 /*Verificamos que haya ingresado al sistema*/
-session_start();
-if($_SESSION[access]==true) {
+//session_start();
+//if($_SESSION[access]==true) {
 
-}
-else{
+//}
+//else{
 
-    echo $_SESSION[access];
+  //  echo $_SESSION[access];
    
-   header('Location:../acceso/no_acceso.php');
-}
+//   header('Location:../acceso/no_acceso.php');
+//}
 
-?>
+//?>
 
 <?php
 include ("../../bbl/lib/funciones_estilo.php");

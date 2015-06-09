@@ -49,7 +49,7 @@ class Conexion {
 }
 
 function conectar_bd() {
-    $m_conexion = new Conexion("localhost", "root", "marcos", "sce");
+    $m_conexion = new Conexion("localhost", "root", "marcos", "scb");
     return $m_conexion;
 }
 

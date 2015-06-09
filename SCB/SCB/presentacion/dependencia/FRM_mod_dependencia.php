@@ -5,7 +5,7 @@
             <?php
             foreach ($view->ListaDocentes as $mDocente):
                 ?>
-                <tr>
+               <tr>
                 <td>
                     Nombre de la Dependencia:
                       <input type="text" id="nombre" name="nombre" size="30" />
@@ -25,13 +25,6 @@
                 <td>
                     Responsable:
                     <input type="text" id="responsable" name="responsable" size="50" /></td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="buttonsBar">
-                        <a id="saveE" class="button" href="javascript:void(0);">Guardar</a>
-                    </div>                                
-                </td>
             </tr>
                 <?php
                 endforeach;

@@ -31,9 +31,12 @@ switch ($action) {
         // limpio todos los valores antes de guardarlos
         // por ls dudas venga algo raro
         $view->disableLayout = true;
-        $view->label = 'Agregar Docente';
+        $view->label = 'Programa';
         $view->idd = $idd;
         $view->contentTemplate = "../../presentacion/docentes/FRM_docente.php";
+		//$view->contentTemplate = "../../presentacion/docentes/FRM_docente.php";
+		//$view->label;
+		
         break;
 
     case 'Save_Docente':

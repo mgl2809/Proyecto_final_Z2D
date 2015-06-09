@@ -1,6 +1,6 @@
 
 			/*TOP NAVIGATION*/
-#menucontainer{position:relative;height:30px;color:#E0E0E0;background:#143D55;
+#menucontainer{position:relative;height:30px;color:#E0E0E0;background:#013916;
 width:100%;font-family:Helvetica,Arial,Verdana,sans-serif;}
 
 #menunav{position:relative;height:27px;font-size:12px;text-transform:uppercase;
@@ -11,10 +11,10 @@ padding:0 0 0 20px;}
 
 #menunav ul li{display:block;float:left;padding:0 1px;}
 
-#menunav ul li a{display:block;float:left;color:#EAF3F8;text-decoration:none;
+#menunav ul li a{display:block;float:left;color:#eaf8ec;text-decoration:none;
 padding:0 0 0 20px;height:33px;}
 
-#menunav ul li a span{padding:12px 20px 0 0;height:21px;float:left;}
+#menunav ul li a span{padding:7px 20px 0 0;height:21px;float:left;}
 
 #menunav ul li a:hover{color:#fff;
 background:transparent url(images/menu_bg-OVER.gif) repeat-x bottom left;}
@@ -22,10 +22,10 @@ background:transparent url(images/menu_bg-OVER.gif) repeat-x bottom left;}
 #menunav ul li a:hover span{display:block;width:auto;cursor:pointer;}
 
 #menunav ul li a.current,#menunav ul li a.current:hover{color:#fff;
-background:#1D6893 url(images/menu_left-ON.gif) no-repeat top left;line-height:275%;}
+background:#fff url(images/menu_left-ON.gif) no-repeat top left;line-height:275%;}
 
 #menunav ul li a.current span{display:block;padding:0 20px 0 0;width:auto;
-background:#1D6893 url(images/menu_right-ON.gif) no-repeat top right;height:33px;}
+background:#13582d url(images/menu_right-ON.gif) no-repeat top right;height:33px;}
 
 #block{
     width:100%;
@@ -47,7 +47,7 @@ background:#1D6893 url(images/menu_right-ON.gif) no-repeat top right;height:33px
     padding: 5px;
     padding-top: 0px;
     background-color: white;
-    border: 5px solid #C3D9FF;
+    border: 5px solid #268035;
     border-radius: 5px 5px 5px 5px;
     margin: 0px auto 0 550px;
     position: absolute;
@@ -68,8 +68,7 @@ background:#1D6893 url(images/menu_right-ON.gif) no-repeat top right;height:33px
     width: 102px;
 }
 a.button {
-    background-color: #92cae4;
-    border:1px solid #205791;
+    background-color: #268035;
     color:white;
     padding:5px;
     text-decoration: none;
@@ -96,7 +95,7 @@ table{
 }
 
 .bar1{
-    background-color: RoyalBlue;
+    background-color: #268035;
    
     border-radius: 5px 5px 5px 5px;
     box-shadow: 1px 1px 5px black;

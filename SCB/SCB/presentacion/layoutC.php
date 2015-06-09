@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <title>SIC Sistema Integral de Calificaciones</title>
+        <title>SCB</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <!-- incluyo la libreria jQuery -->
         <script type="text/javascript" src="../../bbl/lib/jquery-1.7.1.min.js"></script>
@@ -17,7 +17,7 @@
     <body>
         <div id ="block"></div>
         <div class="container">
-            <h1 class="title">SIC - Creditos por Alumno</h1>
+            <h1 class="title">SCB "SISTEMA DE CONTROL DE BENEFICIARIOS"</h1>
             <div id='menucontainer'>
                 <div id='menunav'>
                     <ul>

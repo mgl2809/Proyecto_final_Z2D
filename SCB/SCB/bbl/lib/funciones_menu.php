@@ -33,13 +33,13 @@ function Menu_administrador()
 $menu[1]['texto']="Configurar parciales";
 $menu[2]['texto']="Modificar Usuarios";
 $menu[2]['link']="../cuentas/FRM_BuscaAlumno.php";*/
-$menu[1]['texto']= "Carga";
-$menu[1]['link']= "../../precentacion/carga/listar_carga.php";
+$menu[1]['texto']= "PROGRAMA";
+$menu[1]['link']= "../../presentacion/programa/listar_programa.php";
 
-$menu[2]['texto']= "Alumnos";
-$menu[2]['link']= "../../presentacion/creditos/listar_alumnos.php";
+$menu[2]['texto']= "DEPENDENCIA";
+$menu[2]['link']= "../../presentacion/dependencia/listar_dependencia.php";
 
-
+/*
 $menu[3]['link']="../usuarios/modificar_cuenta.php";
 $menu[3]['texto']="Cuenta";
 
@@ -51,7 +51,7 @@ $menu[5]['texto']="Materias";
 
 $menu[6]['link']="../../presentacion/docentes/listar_docentes.php";
 $menu[6]['texto']="Docentes";
-
+*/
 $menu[7]['link']="../acceso/logout.php";
 $menu[7]['texto']="Salir";
 

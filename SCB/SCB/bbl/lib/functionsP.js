@@ -1,97 +1,22 @@
-
+/**
+ * Autor: Jose Maria Salas Torres
+ * 
+ *
+ */
 $(document).ready(function(){ //cuando el html fue cargado iniciar
 
-    //Funciones para el manejo de encargados
-    //Registrar encargado
-       $('#AgregarE').live('click', function(){
+    //Funciones para el manejo de Alumnos
+    //Registrar alumno
+       $('#AgregarA').live('click', function(){
              
         params = {};
                 
-        params.action= "AgregarEncargado";
-        $('#popupbox').load('listar_encargados.php', params,function(){
+        params.action= "AgregarAlumno";
+        $('#popupbox').load('listar_alumnos.php', params,function(){
             $('#block').show();
             $('#popupbox').show();
         })
     })
-	   
-	//Guarda encargado desde el formulario
-     $('#saveE').live('click',function(){
-      //  alert("sientra");
-        var nombre = document.frm_dependencia.nombre.value;
-		var ubicacion = document.frm_dependencia.ub.value;
-	    var responsable = document.frm_dependencia.responsable.value;
-        
-             
-        params={};
-        params.nombre = nombre;
-		params.ubicacion = ubicacion;
-		 params.responsable = responsable; 
-               
-        var entrar = confirm("Â¿Se guardara el encargado:  "+nombre+" "+ ubicacion +" " +responsable+"?");	
-		
-        if (entrar == true){            
-            params.action="Save_Dependencia";
-            $('#content').load('listar_dependencia.php', params,function(){
-                		
-            })        
-       } 
-    })
-   
-    //Buscar encargado por nombre
-    $('#buscarE').live('click',function(){
-        var nombre= document.frm_listaencargado.nombre_enc.value;	
-        alert(nombre);
-        
-        params={};
-        params.nombre=nombre;
-		
-        params.action="Buscar_d";
-        $('#content').load('listar_dependencia.php', params,function(){
-            
-			
-            })
-		
-		
-	
-    })
-   
-    //funcion modificar encargado
-    $('#select_me').live('click', function(){
-        var id = $(this).attr('data-ide');
-        //var nombre = $(this).sttr('data-nombre');
-        alert("aqui");
-        //alert(nombre);
-       // var nombre = $(this).attr('data-nombre');
-        var entrar = confirm("Â¿Modificar Encargado: "+id+" "+nombre+"?");
-        
-        if(entrar == true){
-            params = {};
-            params.id = id;
-            
-            params.action = "ModificarEncargado";
-            $('#popupbox').load('listar_encargados.php', params, function(){
-                $('#block').show();
-                $('#popupbox').show();    
-            })
-        }
-    })
-    //funciÃ³n para eliminar un encargado
-    $('.select_ee').live('click',function(){
-        //obtengo el id que guardamos en data-id
-        var ide=$(this).attr('data-ide'); 
-        var nombre = $(this).attr('data-nombre');      
-		
-        var entrar = confirm("Â¿Eliminar Encargado: "+ide+" "+nombre+"?");		
-		
-        if (entrar == true){			  
-            params={};
-            params.id=id;		
-            params.action="EliminarEncargado";
-            $('#content').load('listar_encargados.php', params,function(){		
-                })
-        }
-    })
-    
     //Consultar la nformacion de manera rapida
        $('.select_ca').live('click', function(){
              var nc = $(this).attr('data-id');
@@ -105,14 +30,44 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         })
     })
     
-    
+    //Guarda el alumno desde el formulario
+     $('#saveP').live('click',function(){
+        
+        var Nombre_programa = document.frm_listdocente2.Nombre_programa.value.toUpperCase();
+        var Descripcion = document.frm_listdocente2.Descripcion.value.toUpperCase();
+        var carac = document.frm_listdocente2.carac.value.toUpperCase(); 
+        var mont = document.frm_listdocente2.mont.value.toUpperCase();
+        var est = document.frm_listdocente2.est.value;
+              
+	  params={};
+        params.Nombre_programa = Nombre_programa;
+        params.Descripcion = Descripcion; 
+        params.carac = carac;
+        params.mont = mont;
+        params.est = est;
+        
+        var entrar = confirm("¿Se guardara el programa:  "+Nombre_programa+"?");
+		
+		
+        if (entrar == true){            
+            params.action="Save_Alumno";
+            $('#content').load('listar_docentes.php', params,function(){
+                $('#block').hide();
+                $('#popupbox').hide();
+			
+			
+            })
+        }
+       } 
+    })
+   
     
     //modificar alumno   
   $('.select_ma').live('click',function(){
     var nc = $(this).attr('data-id');
     var nombre = $(this).attr('data-nombre');
     
-    var entrar = confirm("Â¿Modificar alumno: "+nombre+"?");
+    var entrar = confirm("¿Modificar alumno: "+nombre+"?");
     
     if(entrar == true){
         params = {};
@@ -162,7 +117,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_mod_alumno.nombre.focus();
             return false;        
         }else if(nocontrol == "" || nocontrol.length == 0 || nocontrol.length > 10 || nocontrol == null || nocontrol.match(/^\s+|\s+$/)){
-            alert("Ingrese el nÃºmero de control maximo 10 caracteres");
+            alert("Ingrese el número de control maximo 10 caracteres");
             document.frm_mod_alumno.nocontrol.select();
             document.frm_mod_alumno.nocontrol.focus();
             return false;
@@ -172,7 +127,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_mod_alumno.idusuario.focus();
             return false;
         }else if(isNaN(idusuario)){
-            alert("Debe ingresar un nÃºmero entero");
+            alert("Debe ingresar un número entero");
             document.frm_mod_alumno.idusuario.select();
             document.frm_mod_alumno.idusuario.focus();
             return false;
@@ -194,13 +149,13 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             alert("Por favor seleccione el estatus");
             return false;
         }else if(dia == "" || dia.length == 0 || dia == null || dia.match(/^\s+|\s+$/)){
-            alert("Por favor seleccione el dÃ­a");
+            alert("Por favor seleccione el día");
             return false;
         }else if(mes == "" || mes.length == 0 || mes == null || mes.match(/^\s+|\s+$/)){
             alert("Por favor seleccione el mes");
             return false;
         }else if(anio == "" || anio.length == 0 || anio == null || anio.match(/^\s+|\s+$/)){
-            alert("Por favor seleccione el aÃ±o");
+            alert("Por favor seleccione el año");
             return false;
         }else if(calle.match(/^\s+|\s+$/)){
             alert("Solo se aceptan letras y numeros");
@@ -226,7 +181,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             alert("Por favor seleccione el estado");
             return false; 
         }else if(telefono.match(/^\s+|\s+$/) || telefono.length > 10 || isNaN(telefono)){
-            alert("NÃºmero de telefono invalido solo 10 digitos seguidos");
+            alert("Número de telefono invalido solo 10 digitos seguidos");
             document.frm_mod_alumno.telefono.select();
             document.frm_mod_alumno.telefono.focus();
             return false;
@@ -237,7 +192,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             return false;
         }else if(nssocial.match(/^\s+|\s+$/) || isNaN(nssocial)){
                 if(nssocial.length <11){
-            alert("NÃºmero de seguro social no valido solo 11 digitos seguidos");
+            alert("Número de seguro social no valido solo 11 digitos seguidos");
             document.frm_mod_alumno.nssocial.select();
             document.frm_mod_alumno.nssocial.focus();
             return false;}
@@ -353,7 +308,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         var crt=$(this).attr('data-id2');	
         var inc= document.ListaCargaA.nc.value;
 		
-        var entrar = confirm("Â¿Eliminnar Actividad:  "+crt+"?");
+        var entrar = confirm("¿Eliminnar Actividad:  "+crt+"?");
 		
 		
         if (entrar == true){
@@ -453,7 +408,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         var nc= document.ListaCreditos.nc.value;
 		
 	  
-        var entrar = confirm("Â¿Asignar el Credito:  "+id2+"?");
+        var entrar = confirm("¿Asignar el Credito:  "+id2+"?");
 		
 		
         if (entrar == true){
@@ -490,7 +445,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         params.docente=docente;
         params.desc = desc;
 		
-        var entrar = confirm("Â¿Se Asignara una Activiad Complementaria a:  "+nc+"?");
+        var entrar = confirm("¿Se Asignara una Activiad Complementaria a:  "+nc+"?");
 		
 		
         if (entrar == true){
@@ -546,7 +501,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_materia.creditos.focus();
             return false;
         }else if(isNaN(creditos)){
-            alert("Debe ingresar un nÃºmero entero");
+            alert("Debe ingresar un número entero");
             document.frm_materia.creditos.select();
             document.frm_materia.creditos.focus();
             return false;
@@ -576,7 +531,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_materia.carrera_dep.focus();
             return false;
         }else if(ret_cvo.match(/^\s+|\s+$/)){
-            alert("Ingrese la clave de retÃ­cula, solo se aceptan letras y numeros");
+            alert("Ingrese la clave de retícula, solo se aceptan letras y numeros");
             document.frm_materia.ret_cvo.select();
             document.frm_materia.ret_cvo.focus();
             return false;
@@ -586,7 +541,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_materia.semestre.focus();
             return false;
         }else if(unidades == "" || unidades == null || unidades.match(/^\s+|\s+$/)|| isNaN(unidades)){
-            alert("Ingrese el nÃºmero de unidades");
+            alert("Ingrese el número de unidades");
             document.frm_materia.unidades.select();
             document.frm_materia.unidades.focus();
             return false;
@@ -603,7 +558,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         params.semestre=semestre;
         params.unidades=unidades;
 				
-        var entrar = confirm("Â¿Se guardara la materia:  "+nombre+"?");
+        var entrar = confirm("¿Se guardara la materia:  "+nombre+"?");
 		
 		
         if (entrar == true){            
@@ -623,7 +578,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         //obtengo el id que guardamos en data-id
         var id=$(this).attr('data-idm');
         var nombre = $(this).attr('data-nombre');		
-        var entrar = confirm("Â¿Eliminar Materia: "+id+" "+nombre+"?");
+        var entrar = confirm("¿Eliminar Materia: "+id+" "+nombre+"?");
 		
 		
         if (entrar == true){
@@ -640,11 +595,11 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         }
     })    
     
-     //fucnciÃ³n para modificar una materia
+     //fucnción para modificar una materia
     $('.select_mm').live('click', function(){
         var id=$(this).attr('data-idm');
         var nombre = $(this).attr('data-nombre');
-        var entrar = confirm("Â¿Modificar Materia: "+id+" "+nombre+"?");
+        var entrar = confirm("¿Modificar Materia: "+id+" "+nombre+"?");
         
         if(entrar == true){
             params = {};
@@ -688,7 +643,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_mod_materia.creditos.focus();
             return false;
         }else if(isNaN(creditos)){
-            alert("Debe ingresar un nÃºmero entero");
+            alert("Debe ingresar un número entero");
             document.frm_mod_materia.creditos.select();
             document.frm_mod_materia.creditos.focus();
             return false;
@@ -718,7 +673,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_mod_materia.carrera_dep.focus();
             return false;
         }else if(ret_cvo.match(/^\s+|\s+$/)){
-            alert("Ingrese la clave de retÃ­cula, solo se aceptan letras y numeros");
+            alert("Ingrese la clave de retícula, solo se aceptan letras y numeros");
             document.frm_mod_materia.ret_cvo.select();
             document.frm_mod_materia.ret_cvo.focus();
             return false;
@@ -728,7 +683,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_mod_materia.semestre.focus();
             return false;
         }else if(unidades == "" || unidades == null || unidades.match(/^\s+|\s+$/)|| isNaN(unidades)){
-            alert("Ingrese el nÃºmero de unidades");
+            alert("Ingrese el número de unidades");
             document.frm_mod_materia.unidades.select();
             document.frm_mod_materia.unidades.focus();
             return false;
@@ -780,7 +735,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
       })
  
     
-    //funciÃ³n que lanza el formulario para registrar un docente
+    //función que lanza el formulario para registrar un docente
       $('#AgregarD').live('click',function(){
         //obtengo el id que guardamos en data-id
         params={};
@@ -795,7 +750,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 		
 	
     })
-	  //funciÃ³n para registrar un docente desde el formulario
+	  //función para registrar un docente desde el formulario
 	  $('#saveD').live('click', function(){
 
         var idusuario = document.frm_docente.idusuario.value;
@@ -807,7 +762,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_docente.idusuario.focus();
             return false;
         }else if(isNaN(idusuario)){
-            alert("Debe ingresar un nÃºmero entero");
+            alert("Debe ingresar un número entero");
             document.frm_docente.idusuario.select();
             document.frm_docente.idusuario.focus();
             return false;
@@ -827,7 +782,7 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
 		params.nombre = nombre;
         
         
-        var entrar = confirm("Â¿Se guardara el docente:  "+nombre+"?");
+        var entrar = confirm("¿Se guardara el docente:  "+nombre+"?");
 		
          if (entrar == true){
             params.action="Save_Docente";
@@ -863,28 +818,29 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
   	
       })
 
-    	//funciÃ³n para eliminar un docente
+    	//función para eliminar un docente
     $('.select_ed').live('click',function(){
         //obtengo el id que guardamos en data-id
         var id=$(this).attr('data-idd'); 
-      
-        var entrar = confirm("Â¿Eliminar Dependencia: "+id+"?");
-		params={};
-        params.id=id;	
+        var nombre = $(this).attr('data-nombre');      
+		
+        var entrar = confirm("¿Eliminar Docente: "+id+" "+nombre+"?");
+		
 		
         if (entrar == true){			  
-            id.action="Eliminar_Dependencia";
-			alert("paso por aqui"+id);
-			 $('#content').load('listar_dependencia.php', id,function(){		
+            params={};
+            params.id=id;		
+            params.action="EliminarDocente";
+            $('#content').load('listar_docentes.php', params,function(){		
                 })
         }
     })
-    //fucnciÃ³n para modifcar un docente
+    //fucnción para modifcar un docente
     $('.select_md').live('click', function(){
         var id=$(this).attr('data-idd');
         var nombre = $(this).attr('data-nombre');
         
-        var entrar = confirm("Â¿Modificar Docente: "+id+" "+nombre+"?");
+        var entrar = confirm("¿Modificar Docente: "+id+" "+nombre+"?");
         
         if(entrar == true){
             params = {};
@@ -898,20 +854,20 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
         }
     })
     
-       //funciÃ³n para modificar un docente
+       //función para modificar un docente
     $('#updateD').live('click', function(){
          
-        var nombre = document.frm_mod_docente.nombre.value;
-        var id = document.frm_mod_docente.id_dependencia.value;
-        var responsable  = document.frm_mod_docente.responsable.value.toUpperCase();
-     /*    
+        var id = document.frm_mod_docente.id.value;
+        var idusuario = document.frm_mod_docente.idusuario.value;
+        var nombre  = document.frm_mod_docente.nombre.value.toUpperCase();
+         
          if(idusuario == "" || idusuario == null || idusuario.length == 0 || idusuario.match(/^\s+|\s+$/)) {
             alert("Ingrese el id de usuario");
             document.frm_mod_docente.idusuario.select();
             document.frm_mod_docente.idusuario.focus();
             return false;
         }else if(isNaN(idusuario)){
-            alert("Debe ingresar un nÃºmero entero");
+            alert("Debe ingresar un número entero");
             document.frm_mod_docente.idusuario.select();
             document.frm_mod_docente.idusuario.focus();
             return false;
@@ -925,17 +881,17 @@ $(document).ready(function(){ //cuando el html fue cargado iniciar
             document.frm_mod_docente.nombre.select();
             document.frm_mod_docente.nombre.focus();
             return false;
-        }else*/{
+        }else{
         params  = {};
-        params.responsable = responsable;
         params.id = id;
+        params.idusuario = idusuario;
         params.nombre = nombre;
        
-        var entrar = confirm("Se modificara el dependencia: "+id+".");
+        var entrar = confirm("Se modificara el docente: "+id+".");
         
             if(entrar == true){
                 params.action="ActualizarDocente";
-                $('#content').load('listar_dependencia.php', params, function(){
+                $('#content').load('listar_docentes.php', params, function(){
                     $('#block').show();
                     $('#popupbox').show();
                 })
